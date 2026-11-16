@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صيدليات النخبة | El Nokhba Pharmacy</title>
+    <!-- خطوط عربية عصرية وفاخرة -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        emerald: {
+                            850: '#064E3B',
+                            900: '#043927',
+                            950: '#022418',
+                        },
+                        gold: {
+                            300: '#F3E5AB',
+                            400: '#E5C158',
+                            500: '#D4AF37',
+                            600: '#B4942B',
+                            700: '#8F731D',
+                        },
+                        alabaster: '#FAF9F6'
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'gold-soft': '0 10px 30px -10px rgba(212, 175, 55, 0.18)',
+                        'emerald-deep': '0 20px 45px -15px rgba(4, 57, 39, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: #FAF9F6;
+            color: #0F2920;
+            overflow-x: hidden;
+        }
+
+        /* شريط تمرير ذهبي أنيق */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #043927;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* تأثيرات زجاجية فاخرة */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+
+        .luxury-card {
+            background: #FFFFFF;
+            border: 1px solid rgba(212, 175, 55, 0.16);
+            box-shadow: 0 8px 25px -8px rgba(4, 57, 39, 0.06);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .luxury-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.55);
+            box-shadow: 0 18px 38px -12px rgba(212, 175, 55, 0.22);
+        }
+
+        .hero-emerald {
+            background: linear-gradient(135deg, #043927 0%, #064E3B 55%, #022418 100%);
+        }
+
+        .gold-gradient-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #B4942B 100%);
+        }
+        .gold-gradient-btn:hover {
+            background: linear-gradient(135deg, #E5C158 0%, #D4AF37 100%);
+        }
+
+        /* حركات السلة والنوافذ */
+        .drawer-backdrop {
+            transition: opacity 0.3s ease;
+        }
+        .drawer-panel {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-emerald-950">
+
+    <!-- الشريط العلوي الذهبي -->
+    <div class="bg-emerald-950 text-gold-300 text-[11px] sm:text-xs py-2 px-4 border-b border-gold-500/20">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+            <div class="flex items-center gap-2 font-medium">
+                <span class="inline-block w-2 h-2 rounded-full bg-gold-500 animate-pulse"></span>
+                <span>منتجات أصلية 100% بتخزين طبي قياسي وضمان الوكيل المعتمد في مصر</span>
+            </div>
+            <div class="hidden sm:flex items-center gap-4 text-white/80">
+                <span id="top-free-shipping-badge">توصيل مجاني للطلبات فوق 1,000 ج.م</span>
+                <span class="text-gold-500/40">|</span>
+                <span>خدمة صيدلانية 24/7</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- الهيدر الرئيسي (Glassmorphism Sticky Navbar) -->
+    <header class="sticky top-0 z-40 glass-nav shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-3 sm:gap-5">
+                
+                <!-- شعار الصيدلية -->
+                <button onclick="resetAllFilters()" class="flex items-center gap-3 text-right shrink-0 group focus:outline-none">
+                    <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl hero-emerald flex items-center justify-center border border-gold-500/50 shadow-md group-hover:scale-105 transition-transform">
+                        <!-- شعار الصليب الطبي الذهبي -->
+                        <svg class="w-6 h-6 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 5v14M5 12h14"/>
+                            <circle cx="12" cy="12" r="9" stroke-width="1.2" stroke-opacity="0.45"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 id="ui-pharmacy-ar" class="text-lg sm:text-xl font-extrabold text-emerald-900 leading-tight">صيدليات النخبة</h1>
+                        <p id="ui-pharmacy-en" class="text-[10px] sm:text-xs font-tajawal font-bold tracking-widest text-gold-600 uppercase">EL NOKHBA PHARMACY</p>
+                    </div>
+                </button>
+
+                <!-- شريط البحث الذكي (سطح المكتب) -->
+                <div class="hidden md:flex flex-1 max-w-xl">
+                    <div class="relative w-full">
+                        <input 
+                            type="text" 
+                            id="search-desktop"
+                            oninput="handleSearchInput(this.value)"
+                            placeholder="ابحث بالعربي أو الإنجليزي (مثال: CeraVe، بنادول، واقي شمس...)" 
+                            class="w-full bg-alabaster border border-gold-500/25 focus:border-gold-500 focus:bg-white rounded-2xl py-3 pr-11 pl-10 text-sm text-emerald-950 placeholder-gray-400 outline-none transition-all shadow-inner"
+                        >
+                        <svg class="w-4 h-4 text-emerald-850/60 absolute right-4 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                        </svg>
+                        <button id="clear-btn-desktop" onclick="clearSearch()" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-900 p-1" title="مسح البحث">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- أزرار التحكم (الروشتة + الإعدادات + السلة) -->
+                <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
+                    <!-- زر اطلب بالروشتة -->
+                    <button 
+                        onclick="openPrescriptionModal()"
+                        class="gold-gradient-btn text-emerald-950 font-extrabold text-xs sm:text-sm px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-2xl shadow-gold-soft flex items-center gap-2 transition-all active:scale-95"
+                    >
+                        <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                            <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>
+                        </svg>
+                        <span>اطلب بالروشتة</span>
+                    </button>
+
+                    <!-- زر إعدادات المتجر -->
+                    <button 
+                        onclick="openSettingsModal()"
+                        title="إعدادات الصيدلية وربط Google Sheets"
+                        class="p-2.5 sm:p-3 rounded-2xl bg-alabaster hover:bg-gold-500/15 text-emerald-900 border border-gold-500/25 transition-all active:scale-95"
+                    >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>
+                        </svg>
+                    </button>
+
+                    <!-- زر السلة -->
+                    <button 
+                        onclick="toggleCartDrawer(true)"
+                        class="relative flex items-center gap-2 bg-emerald-900 hover:bg-emerald-850 text-white px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-2xl shadow-md border border-gold-500/30 transition-all active:scale-95"
+                    >
+                        <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                        <span class="hidden sm:inline text-sm font-bold">السلة</span>
+                        <span id="header-cart-badge" class="absolute -top-2 -left-2 bg-gold-500 text-emerald-950 font-black text-xs w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow">
+                            0
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- شريط البحث للموبايل -->
+            <div class="md:hidden pb-3.5">
+                <div class="relative w-full">
+                    <input 
+                        type="text" 
+                        id="search-mobile"
+                        oninput="handleSearchInput(this.value)"
+                        placeholder="ابحث باسم الدواء أو البراند (CeraVe, Panadol)..." 
+                        class="w-full bg-alabaster border border-gold-500/25 focus:border-gold-500 focus:bg-white rounded-xl py-2.5 pr-10 pl-9 text-sm text-emerald-950 placeholder-gray-400 outline-none transition-all"
+                    >
+                    <svg class="w-4 h-4 text-emerald-850/60 absolute right-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                    </svg>
+                    <button id="clear-btn-mobile" onclick="clearSearch()" class="hidden absolute left-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-emerald-900 p-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- البانر الترحيبي الفاخر (Hero Banner) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2">
+        <div class="hero-emerald rounded-3xl p-6 sm:p-10 lg:p-12 text-white relative overflow-hidden shadow-emerald-deep border border-gold-500/35">
+            <!-- إضاءات زخرفية ناعمة -->
+            <div class="absolute -left-20 -top-20 w-72 h-72 rounded-full bg-gold-500/15 blur-3xl pointer-events-none"></div>
+            <div class="absolute right-12 -bottom-24 w-80 h-80 rounded-full bg-emerald-400/10 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-8 space-y-4">
+                    <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-gold-500/35 rounded-full px-4 py-1.5 text-xs font-bold text-gold-300">
+                        <svg class="w-3.5 h-3.5 text-gold-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                        <span>تجربة صيدلانية استثنائية بمعايير عالمية</span>
+                    </div>
+
+                    <h2 class="text-2xl sm:text-4xl lg:text-5xl font-black leading-tight">
+                        عناية طبية راقية.. <span class="text-gold-400">تصلك أينما كنت</span>
+                    </h2>
+
+                    <p class="text-emerald-100/90 text-sm sm:text-base max-w-2xl leading-relaxed">
+                        تصفح تشكيلتنا المختارة من الأدوية، مستحضرات العناية بالبشرة والشعر العالمية، ومنتجات الأمومة والطفل، واطلبها في ثوانٍ لتصلك بأسرع خدمة توصيل.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-3 pt-2">
+                        <button 
+                            onclick="openPrescriptionModal()"
+                            class="gold-gradient-btn text-emerald-950 font-extrabold text-sm px-6 py-3.5 rounded-2xl shadow-gold-soft flex items-center gap-2.5 transition-transform active:scale-95"
+                        >
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
+                                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/>
+                            </svg>
+                            <span>اطلب بالروشتة أو التأمين الطبي</span>
+                        </button>
+                        <a href="#catalog-section" class="bg-white/10 hover:bg-white/15 text-white border border-white/20 font-bold text-sm px-6 py-3.5 rounded-2xl transition">
+                            تصفح المنتجات
+                        </a>
+                    </div>
+                </div>
+
+                <!-- بطاقة الثقة الجانبية -->
+                <div class="lg:col-span-4 bg-white/10 backdrop-blur-md border border-gold-500/30 rounded-3xl p-5 sm:p-6 space-y-4">
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gold-500/20 border border-gold-500/40 text-gold-400 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-white">توصيل سريع خلال 30 دقيقة</h3>
+                            <p class="text-xs text-emerald-200/80">تغطية شاملة لكافة المناطق</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gold-500/20 border border-gold-500/40 text-gold-400 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-white">منتجات أصلية ومضمونة 100%</h3>
+                            <p class="text-xs text-emerald-200/80">رقابة صيدلانية وتخزين مبرد آمن</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-3.5">
+                        <div class="w-11 h-11 rounded-2xl bg-gold-500/20 border border-gold-500/40 text-gold-400 flex items-center justify-center shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-sm text-white">خيارات دفع مرنة</h3>
+                            <p class="text-xs text-emerald-200/80">كاش عند الاستلام، InstaPay، أو فيزا</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- شريط التصنيفات اللاصق (Sticky Categories) -->
+    <section id="catalog-section" class="sticky top-20 z-30 bg-alabaster/95 backdrop-blur-md py-4 border-b border-gold-500/15">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="category-pills" class="flex items-center gap-2.5 overflow-x-auto no-scrollbar pb-1">
+                <!-- يتم توليد التصنيفات برمجياً -->
+            </div>
+        </div>
+    </section>
+
+    <!-- شبكة المنتجات (Product Catalog Grid) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+            <div>
+                <h3 id="active-cat-heading" class="text-xl sm:text-2xl font-extrabold text-emerald-900">جميع منتجات الصيدلية</h3>
+                <p id="results-counter" class="text-xs sm:text-sm text-gray-500 mt-0.5">يتم عرض 14 منتجاً مختاراً</p>
+            </div>
+
+            <div id="catalog-status-pill" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-gold-500/30 text-xs font-bold text-emerald-900 shadow-sm">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                <span>الكتالوج التجريبي المعتمد</span>
+            </div>
+        </div>
+
+        <!-- حالة التحميل من Google Sheets -->
+        <div id="sheet-loader" class="hidden py-20 text-center space-y-4">
+            <div class="w-12 h-12 border-4 border-gold-500 border-t-emerald-900 rounded-full animate-spin mx-auto"></div>
+            <p class="text-emerald-900 font-bold">جاري مزامنة المنتجات والأسعار من Google Sheets...</p>
+        </div>
+
+        <!-- شبكة المنتجات: عمودان على الموبايل و4 أعمدة على الشاشات الكبيرة -->
+        <div id="products-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6">
+            <!-- يتم حقن بطاقات المنتجات هنا -->
+        </div>
+
+        <!-- حالة عدم وجود نتائج -->
+        <div id="no-results-box" class="hidden py-16 text-center max-w-md mx-auto space-y-4">
+            <div class="w-16 h-16 rounded-3xl bg-emerald-900/5 text-emerald-900 flex items-center justify-center mx-auto border border-gold-500/20">
+                <svg class="w-8 h-8 text-gold-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/><path d="M8 11h6"/></svg>
+            </div>
+            <h4 class="text-lg font-extrabold text-emerald-900">لم نجد صنفاً يطابق بحثك</h4>
+            <p class="text-sm text-gray-500">يمكنك طلب أي دواء أو مستحضر غير ظاهر هنا مباشرة من خلال خدمة الروشتة وسنوفره لك فوراً.</p>
+            <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-xl border border-emerald-900/20 text-emerald-900 text-sm font-bold hover:bg-emerald-900/5 transition">
+                    عرض كل المنتجات
+                </button>
+                <button onclick="openPrescriptionModal()" class="px-5 py-2.5 rounded-xl bg-emerald-900 text-white text-sm font-bold hover:bg-emerald-850 transition">
+                    اطلب الصنف من الصيدلي
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- الفوتر (Footer) -->
+    <footer class="bg-emerald-950 text-white mt-16 border-t-4 border-gold-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8 border-b border-white/10">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-900 flex items-center justify-center border border-gold-500/40">
+                            <svg class="w-5 h-5 text-gold-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+                        </div>
+                        <div>
+                            <h4 id="footer-name-ar" class="text-lg font-extrabold text-white">صيدليات النخبة</h4>
+                            <p id="footer-name-en" class="text-[11px] font-tajawal text-gold-400 tracking-wider uppercase">EL NOKHBA PHARMACY</p>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-emerald-200/80 leading-relaxed">
+                        نقدم أرقى مستويات الرعاية الصيدلانية ومنتجات التجميل الطبية المعتمدة في مصر، مع سرعة في التوصيل ودقة في صرف الأدوية.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <h5 class="text-sm font-bold text-gold-400">الأقسام الرئيسية</h5>
+                    <ul class="space-y-2 text-xs sm:text-sm text-emerald-100/80">
+                        <li><button onclick="selectCategory('العناية بالبشرة')" class="hover:text-gold-400 transition">العناية بالبشرة والجلدية</button></li>
+                        <li><button onclick="selectCategory('العناية بالشعر')" class="hover:text-gold-400 transition">العناية الطبية بالشعر</button></li>
+                        <li><button onclick="selectCategory('أدوية وعلاجات')" class="hover:text-gold-400 transition">الأدوية والعلاجات</button></li>
+                        <li><button onclick="selectCategory('فيتامينات ومكملات')" class="hover:text-gold-400 transition">الفيتامينات والمكملات الغذائية</button></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h5 class="text-sm font-bold text-gold-400">إدارة المتجر والتواصل</h5>
+                    <p class="text-xs sm:text-sm text-emerald-100/80 flex items-center gap-2">
+                        <span>واتساب الطلبات:</span>
+                        <span id="footer-whatsapp-num" dir="ltr" class="font-bold text-gold-300">+201000000000</span>
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-2">
+                        <button onclick="openSettingsModal()" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-950 bg-gold-500 hover:bg-gold-400 px-4 py-2.5 rounded-xl transition shadow">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+                            <span>إعدادات الصيدلية وربط Google Sheets</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-emerald-300/60">
+                <p>© <span id="year-span">2026</span> <span id="footer-copy-name">صيدليات النخبة</span>. جميع الحقوق محفوظة.</p>
+                <p>الأسعار بالجنيه المصري وفقاً للتسعيرة المعتمدة</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- شريط السلة العائم للموبايل -->
+    <div id="mobile-cart-bar" class="fixed bottom-4 inset-x-4 z-30 md:hidden hidden">
+        <button 
+            onclick="toggleCartDrawer(true)"
+            class="w-full hero-emerald text-white p-4 rounded-2xl shadow-2xl border border-gold-500/50 flex items-center justify-between active:scale-98 transition-transform"
+        >
+            <div class="flex items-center gap-3">
+                <span id="mobile-bar-qty" class="bg-gold-500 text-emerald-950 font-black w-7 h-7 rounded-xl flex items-center justify-center text-sm">0</span>
+                <span class="font-bold text-sm">عرض السلة وإتمام الطلب</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <span id="mobile-bar-total" class="font-extrabold text-gold-400 text-base">0 ج.م</span>
+                <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+            </div>
+        </button>
+    </div>
+
+    <!-- سلة المشتريات الجانبية (Slide-over Cart Drawer) -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden">
+        <div id="cart-backdrop" onclick="toggleCartDrawer(false)" class="drawer-backdrop fixed inset-0 bg-emerald-950/65 backdrop-blur-sm opacity-0"></div>
+        
+        <div id="cart-panel" class="drawer-panel fixed inset-y-0 left-0 w-full max-w-md bg-white shadow-2xl flex flex-col -translate-x-full">
+            <!-- رأس السلة -->
+            <div class="p-5 hero-emerald text-white flex items-center justify-between border-b border-gold-500/35">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg">سلة المشتريات</h3>
+                        <p id="drawer-subtitle" class="text-xs text-gold-300">0 أصناف مختارة</p>
+                    </div>
+                </div>
+                <button onclick="toggleCartDrawer(false)" class="p-2 rounded-xl bg-white/10 hover:bg-white/20 text-white transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- شريط التقدم نحو التوصيل المجاني -->
+            <div id="free-shipping-bar-container" class="hidden bg-gold-500/15 px-5 py-2.5 border-b border-gold-500/20 text-xs">
+                <p id="free-shipping-text" class="font-bold text-emerald-900 mb-1.5 text-center"></p>
+                <div class="w-full h-1.5 bg-emerald-900/10 rounded-full overflow-hidden">
+                    <div id="free-shipping-progress" class="h-full bg-gold-500 transition-all duration-300" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- محتوى السلة القابل للتمرير -->
+            <div class="flex-1 overflow-y-auto p-5 space-y-6">
+                <div id="drawer-items-list" class="space-y-3">
+                    <!-- عناصر السلة -->
+                </div>
+
+                <!-- السلة الفارغة -->
+                <div id="drawer-empty-state" class="py-14 text-center space-y-3">
+                    <div class="w-16 h-16 rounded-full bg-alabaster text-gold-600 flex items-center justify-center mx-auto border border-gold-500/20">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                    </div>
+                    <h4 class="font-extrabold text-emerald-900">سلتك فارغة حالياً</h4>
+                    <p class="text-xs text-gray-500 max-w-xs mx-auto">أضف منتجاتك المفضلة من المتجر أو اطلب مباشرة بصورة الروشتة.</p>
+                </div>
+
+                <!-- نموذج بيانات التوصيل والدفع -->
+                <div id="drawer-checkout-form" class="hidden space-y-4 pt-4 border-t border-gray-100">
+                    <h4 class="font-extrabold text-sm text-emerald-900 flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-gold-500"></span>
+                        <span>بيانات التوصيل والدفع</span>
+                    </h4>
+
+                    <div class="space-y-3">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">الاسم بالكامل <span class="text-red-500">*</span></label>
+                            <input type="text" id="order-name" placeholder="مثال: محمد أحمد علي" class="w-full bg-alabaster border border-gray-200 focus:border-gold-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-sm outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">رقم الموبايل <span class="text-red-500">*</span></label>
+                            <input type="tel" id="order-phone" placeholder="010xxxxxxxx" dir="ltr" class="w-full text-right bg-alabaster border border-gray-200 focus:border-gold-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-sm outline-none transition">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">العنوان بالتفصيل (المنطقة / الشارع / رقم العقار) <span class="text-red-500">*</span></label>
+                            <textarea id="order-address" rows="2" placeholder="مثال: مدينة نصر، عباس العقاد، عمارة 15، الدور الرابع" class="w-full bg-alabaster border border-gray-200 focus:border-gold-500 focus:bg-white rounded-xl px-3.5 py-2 text-sm outline-none transition"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">طريقة الدفع المفضلة</label>
+                            <select id="order-payment" class="w-full bg-alabaster border border-gray-200 focus:border-gold-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-sm outline-none transition font-semibold text-emerald-950">
+                                <option value="الدفع نقداً عند الاستلام (Cash)">الدفع نقداً عند الاستلام (Cash)</option>
+                                <option value="تحويل إنستا باي (InstaPay)">تحويل إنستا باي (InstaPay)</option>
+                                <option value="فودافون كاش / محفظة إلكترونية">فودافون كاش / محفظة إلكترونية</option>
+                                <option value="بطاقة بنكية عند الاستلام (POS)">بطاقة بنكية عند الاستلام (POS)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">ملاحظات للصيدلي (اختياري)</label>
+                            <input type="text" id="order-notes" placeholder="مثال: الاتصال قبل الوصول بـ 5 دقائق..." class="w-full bg-alabaster border border-gray-200 focus:border-gold-500 focus:bg-white rounded-xl px-3.5 py-2 text-sm outline-none transition">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ملخص الفاتورة وأزرار الإرسال -->
+            <div id="drawer-footer" class="hidden p-5 bg-alabaster border-t border-gold-500/20 space-y-3.5">
+                <div class="space-y-1.5 text-sm">
+                    <div class="flex justify-between text-gray-600">
+                        <span>المجموع الفرعي</span>
+                        <span id="summary-subtotal" class="font-bold">0 ج.م</span>
+                    </div>
+                    <div class="flex justify-between text-gray-600">
+                        <span>مصاريف التوصيل</span>
+                        <span id="summary-delivery" class="font-bold text-emerald-850">25 ج.م</span>
+                    </div>
+                    <div class="flex justify-between text-base font-black text-emerald-950 pt-2 border-t border-gray-200">
+                        <span>الإجمالي المستحق</span>
+                        <span id="summary-total" class="text-emerald-900">0 ج.م</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 gap-2">
+                    <button 
+                        onclick="processWhatsAppOrder(false)"
+                        class="w-full py-3.5 px-5 hero-emerald hover:opacity-95 text-white font-extrabold rounded-2xl shadow-lg flex items-center justify-center gap-2 transition active:scale-98 border border-gold-500/40"
+                    >
+                        <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        <span>إتمام الطلب عبر واتساب</span>
+                    </button>
+
+                    <button 
+                        onclick="processWhatsAppOrder(true)"
+                        class="w-full py-2 px-4 bg-white hover:bg-gold-500/10 text-emerald-900 font-bold text-xs rounded-xl border border-gold-500/30 transition"
+                    >
+                        معاينة نص الفاتورة قبل الإرسال
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة اطلب بالروشتة (Prescription Modal) -->
+    <div id="prescription-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closePrescriptionModal()" class="fixed inset-0 bg-emerald-950/70 backdrop-blur-sm"></div>
+        
+        <div class="relative bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl border border-gold-500/40 z-10 space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-2xl gold-gradient-btn text-emerald-950 flex items-center justify-center shadow">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/><circle cx="12" cy="13" r="3"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-extrabold text-lg text-emerald-900">اطلب بالروشتة الطبية</h3>
+                        <p class="text-xs text-gray-500">صرف فوري للروشتات والتأمين الطبي</p>
+                    </div>
+                </div>
+                <button onclick="closePrescriptionModal()" class="p-2 rounded-xl hover:bg-gray-100 text-gray-400">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="bg-gold-500/10 border border-gold-500/30 rounded-2xl p-3.5 text-xs text-emerald-950 leading-relaxed">
+                <strong>خطوة بسيطة:</strong> أدخل بياناتك بالأسفل وسيتم تحويلك مباشرة لمحادثة واتساب الصيدلية لإرفاق <strong>صورة الروشتة أو كارت التأمين</strong>.
+            </div>
+
+            <div class="space-y-3">
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">الاسم <span class="text-red-500">*</span></label>
+                    <input type="text" id="rx-name" placeholder="اسم العميل" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">رقم الموبايل <span class="text-red-500">*</span></label>
+                    <input type="tel" id="rx-phone" dir="ltr" placeholder="010xxxxxxxx" class="w-full text-right bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">المنطقة / العنوان <span class="text-red-500">*</span></label>
+                    <input type="text" id="rx-address" placeholder="مثال: المعادي، شارع 9" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-700 mb-1">ملاحظات (اختياري)</label>
+                    <input type="text" id="rx-notes" placeholder="مثال: تأمين طبي شركة أكسا / صرف أصناف محددة" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                </div>
+            </div>
+
+            <button onclick="sendPrescriptionToWhatsApp()" class="w-full py-3.5 px-5 hero-emerald text-white font-extrabold rounded-2xl shadow-lg flex items-center justify-center gap-2 border border-gold-500/40 active:scale-98 transition">
+                <span>متابعة وإرفاق الصورة على واتساب</span>
+                <svg class="w-5 h-5 text-gold-400" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            </button>
+        </div>
+    </div>
+
+    <!-- نافذة معاينة الفاتورة قبل الإرسال (Invoice Preview Modal) -->
+    <div id="invoice-preview-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closeInvoicePreview()" class="fixed inset-0 bg-emerald-950/70 backdrop-blur-sm"></div>
+        
+        <div class="relative bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-gold-500/40 z-10 space-y-4">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <h3 class="font-extrabold text-base text-emerald-900">معاينة رسالة الطلب (واتساب)</h3>
+                <button onclick="closeInvoicePreview()" class="p-1.5 rounded-xl hover:bg-gray-100 text-gray-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <pre id="invoice-preview-text" class="bg-alabaster border border-gold-500/25 rounded-2xl p-4 text-xs font-cairo whitespace-pre-wrap leading-relaxed text-emerald-950 max-h-72 overflow-y-auto"></pre>
+
+            <div class="flex items-center gap-2 pt-2">
+                <button onclick="copyInvoiceText()" class="flex-1 py-3 px-4 rounded-xl border border-emerald-900/20 text-emerald-900 font-bold text-xs hover:bg-emerald-900/5 transition">
+                    نسخ نص الفاتورة
+                </button>
+                <a id="direct-wa-link" href="#" target="_blank" class="flex-1 py-3 px-4 rounded-xl hero-emerald text-white font-bold text-xs text-center shadow">
+                    فتح واتساب الآن
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة إعدادات الصيدلية وربط Google Sheets -->
+    <div id="settings-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div onclick="closeSettingsModal()" class="fixed inset-0 bg-emerald-950/75 backdrop-blur-sm"></div>
+        
+        <div class="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-7 shadow-2xl border border-gold-500/40 z-10 max-h-[90vh] overflow-y-auto space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+                <div>
+                    <h3 class="font-extrabold text-lg text-emerald-900">إعدادات الصيدلية وربط Google Sheets</h3>
+                    <p class="text-xs text-gray-500">خصص متجرك وحمّل نسخة جاهزة للنشر المجاني</p>
+                </div>
+                <button onclick="closeSettingsModal()" class="p-2 rounded-xl hover:bg-gray-100 text-gray-500">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <div class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">اسم الصيدلية (عربي)</label>
+                        <input type="text" id="cfg-name-ar" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">اسم الصيدلية (إنجليزي)</label>
+                        <input type="text" id="cfg-name-en" dir="ltr" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">واتساب الطلبات</label>
+                        <input type="text" id="cfg-whatsapp" dir="ltr" placeholder="201000000000" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">مصاريف التوصيل (ج.م)</label>
+                        <input type="number" id="cfg-delivery" min="0" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 mb-1">توصيل مجاني فوق (ج.م)</label>
+                        <input type="number" id="cfg-free-threshold" min="0" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-sm outline-none focus:border-gold-500">
+                    </div>
+                </div>
+
+                <div class="pt-2 border-t border-gray-100">
+                    <label class="block text-xs font-bold text-emerald-900 mb-1">رابط Google Sheet CSV (اختياري)</label>
+                    <input type="url" id="cfg-sheet-url" dir="ltr" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv" class="w-full bg-alabaster border border-gray-200 rounded-xl px-3.5 py-2.5 text-xs outline-none focus:border-gold-500">
+                    <div class="mt-2 bg-emerald-900/5 rounded-2xl p-3.5 text-[11px] text-emerald-950 space-y-1 leading-relaxed border border-emerald-900/10">
+                        <p class="font-extrabold text-emerald-900">خطوات الربط المجاني بـ Google Sheets:</p>
+                        <p>1. أنشئ جدول Google Sheet بالأعمدة: <code class="bg-white px-1.5 py-0.5 rounded border">name, name_en, brand, category, price, status</code></p>
+                        <p>2. اضغط <b>File &gt; Share &gt; Publish to web</b> واختر صيغة <b>CSV</b> ثم انسخ الرابط وضعه بالأعلى.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-4 border-t border-gray-100">
+                <button onclick="downloadStandaloneHTML()" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gold-500/20 hover:bg-gold-500/30 text-emerald-950 font-extrabold text-xs flex items-center justify-center gap-2 border border-gold-500/40 transition">
+                    <svg class="w-4 h-4 text-gold-700" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+                    <span>تحميل ملف HTML جاهز للنشر</span>
+                </button>
+
+                <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+                    <button onclick="closeSettingsModal()" class="px-4 py-2.5 rounded-xl border border-gray-200 text-xs font-bold text-gray-600 hover:bg-gray-50">
+                        إلغاء
+                    </button>
+                    <button onclick="saveStoreSettings()" class="px-6 py-2.5 rounded-xl hero-emerald text-white text-xs font-extrabold shadow">
+                        حفظ وتطبيق
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- إشعار Toast أنيق -->
+    <div id="toast-box" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 pointer-events-none">
+        <div class="bg-emerald-950 text-white px-4 py-3 rounded-2xl shadow-2xl border border-gold-500/40 flex items-center gap-3 text-xs sm:text-sm font-bold">
+            <span id="toast-dot" class="w-2.5 h-2.5 rounded-full bg-gold-400"></span>
+            <span id="toast-msg">تمت الإضافة للسلة</span>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. كتالوج المنتجات الواقعي للصيدليات المصرية (14 منتج)
+        // ==========================================
+        const EGYPT_PHARMACY_CATALOG = [
+            {
+                id: 1,
+                nameAr: "غسول سيرافي المرطب للبشرة العادية والجافة 236 مل",
+                nameEn: "CeraVe Hydrating Cleanser 236ml",
+                brand: "CeraVe",
+                category: "العناية بالبشرة",
+                price: 580,
+                ingredient: "Ceramides & Hyaluronic Acid",
+                packType: "pump",
+                accent: "#0284C7"
+            },
+            {
+                id: 2,
+                nameAr: "واقي شمس لاروش بوزيه أنثيليوس سائل خفي +50",
+                nameEn: "La Roche-Posay Anthelios UVmune 400 SPF50+",
+                brand: "La Roche-Posay",
+                category: "العناية بالبشرة",
+                price: 890,
+                ingredient: "Mexoryl 400 Filter",
+                packType: "tube",
+                accent: "#EA580C"
+            },
+            {
+                id: 3,
+                nameAr: "شامبو فيشي ديركوس الطبي المضاد للقشرة 200 مل",
+                nameEn: "Vichy Dercos Anti-Dandruff Shampoo",
+                brand: "Vichy",
+                category: "العناية بالشعر",
+                price: 620,
+                ingredient: "Selenium DS + Cohesyl",
+                packType: "bottle",
+                accent: "#059669"
+            },
+            {
+                id: 4,
+                nameAr: "ماء ميسيلار بيوديرما سينسيبيو لإزالة المكياج 250 مل",
+                nameEn: "Bioderma Sensibio H2O Micellar Water 250ml",
+                brand: "Bioderma",
+                category: "العناية بالبشرة",
+                price: 540,
+                ingredient: "Micellar Technology",
+                packType: "bottle",
+                accent: "#E11D48"
+            },
+            {
+                id: 5,
+                nameAr: "بانادول إكسترا أدفانس 24 قرص مسكن للألم وخافض للحرارة",
+                nameEn: "Panadol Extra Advance 24 Tabs",
+                brand: "GSK",
+                category: "أدوية وعلاجات",
+                price: 65,
+                ingredient: "Paracetamol 500mg + Caffeine",
+                packType: "box",
+                accent: "#DC2626"
+            },
+            {
+                id: 6,
+                nameAr: "كتافلام 50 مجم 20 قرص مسكن سريع ومضاد للالتهابات",
+                nameEn: "Cataflam 50mg 20 Tabs",
+                brand: "Novartis",
+                category: "أدوية وعلاجات",
+                price: 68,
+                ingredient: "Diclofenac Potassium 50mg",
+                packType: "box",
+                accent: "#B91C1C"
+            },
+            {
+                id: 7,
+                nameAr: "أوجمنتين 1 جم مضاد حيوي واسع المجال 14 قرص",
+                nameEn: "Augmentin 1g 14 Tabs",
+                brand: "GSK",
+                category: "أدوية وعلاجات",
+                price: 165,
+                ingredient: "Amoxicillin + Clavulanic Acid",
+                packType: "box",
+                accent: "#0D9488"
+            },
+            {
+                id: 8,
+                nameAr: "سنتروم مع لوتين مكمل غذائي متكامل 30 قرص",
+                nameEn: "Centrum Lutein 30 Tabs",
+                brand: "Centrum",
+                category: "فيتامينات ومكملات",
+                price: 490,
+                ingredient: "Multivitamins & Minerals",
+                packType: "bottle",
+                accent: "#D97706"
+            },
+            {
+                id: 9,
+                nameAr: "ليمتلس أوميجا 3 تركيز 2000 مجم لدعم القلب والتركيز",
+                nameEn: "Limitless Omega 3 2000mg",
+                brand: "Eva Pharma",
+                category: "فيتامينات ومكملات",
+                price: 245,
+                ingredient: "Omega-3 Fatty Acids",
+                packType: "box",
+                accent: "#2563EB"
+            },
+            {
+                id: 10,
+                nameAr: "حفاضات بامبرز بريميوم كير مقاس 4 عبوة التوفير",
+                nameEn: "Pampers Premium Care Size 4",
+                brand: "Pampers",
+                category: "أمومة وطفل",
+                price: 420,
+                ingredient: "Cotton Soft Protection",
+                packType: "pack",
+                accent: "#0891B2"
+            },
+            {
+                id: 11,
+                nameAr: "كريم سودوكريم للعناية ببشرة الطفل والحماية من الالتهابات 125 جم",
+                nameEn: "Sudocrem Antiseptic Cream 125g",
+                brand: "Sudocrem",
+                category: "أمومة وطفل",
+                price: 295,
+                ingredient: "Zinc Oxide Hypoallergenic",
+                packType: "jar",
+                accent: "#4F46E5"
+            },
+            {
+                id: 12,
+                nameAr: "جهاز قياس ضغط الدم الديجيتال أومرون M2 بيسك",
+                nameEn: "Omron M2 Basic Blood Pressure Monitor",
+                brand: "Omron",
+                category: "أجهزة ومستلزمات",
+                price: 1650,
+                ingredient: "Intellisense Technology",
+                packType: "device",
+                accent: "#1E3A8A"
+            },
+            {
+                id: 13,
+                nameAr: "جهاز قياس السكر في الدم أكيو تشيك إنستانت كامل",
+                nameEn: "Accu-Chek Instant Blood Glucose Kit",
+                brand: "Roche",
+                category: "أجهزة ومستلزمات",
+                price: 980,
+                ingredient: "Instant Accuracy Strips",
+                packType: "device",
+                accent: "#0369A1"
+            },
+            {
+                id: 14,
+                nameAr: "سيروم كولاجرا المغذي والملمع للشعر 100 مل",
+                nameEn: "Kolagra Hair Serum 100ml",
+                brand: "Kolagra",
+                category: "العناية بالشعر",
+                price: 310,
+                ingredient: "Argan Oil & Vitamin E",
+                packType: "pump",
+                accent: "#B45309"
+            }
+        ];
+
+        const CATEGORIES_LIST = [
+            { id: "الكل", label: "الكل" },
+            { id: "العناية بالبشرة", label: "العناية بالبشرة" },
+            { id: "العناية بالشعر", label: "العناية بالشعر" },
+            { id: "أدوية وعلاجات", label: "أدوية وعلاجات" },
+            { id: "فيتامينات ومكملات", label: "فيتامينات ومكملات" },
+            { id: "أمومة وطفل", label: "أمومة وطفل" },
+            { id: "أجهزة ومستلزمات", label: "أجهزة ومستلزمات" }
+        ];
+
+        // ==========================================
+        // 2. حالة المتجر (State Management)
+        // ==========================================
+        let storeConfig = {
+            nameAr: "صيدليات النخبة",
+            nameEn: "El Nokhba Pharmacy",
+            whatsapp: "201000000000",
+            deliveryFee: 25,
+            freeDeliveryThreshold: 1000,
+            sheetUrl: ""
+        };
+
+        let activeProducts = [...EGYPT_PHARMACY_CATALOG];
+        let cart = [];
+        let currentCategory = "الكل";
+        let currentSearch = "";
+
+        // ==========================================
+        // 3. التهيئة عند فتح الصفحة
+        // ==========================================
+        window.addEventListener('DOMContentLoaded', () => {
+            loadConfigFromStorage();
+            loadCartFromStorage();
+            syncBrandingUI();
+            renderCategoryPills();
+
+            if (storeConfig.sheetUrl && storeConfig.sheetUrl.trim()) {
+                loadSheetProducts(storeConfig.sheetUrl);
+            } else {
+                renderProductGrid();
+            }
+
+            refreshCartUI();
+            document.getElementById('year-span').textContent = new Date().getFullYear();
+        });
+
+        function loadConfigFromStorage() {
+            try {
+                const saved = localStorage.getItem('elnokhba_pharmacy_cfg');
+                if (saved) storeConfig = { ...storeConfig, ...JSON.parse(saved) };
+            } catch (e) {}
+        }
+
+        function loadCartFromStorage() {
+            try {
+                const saved = localStorage.getItem('elnokhba_pharmacy_cart');
+                if (saved) cart = JSON.parse(saved);
+            } catch (e) {
+                cart = [];
+            }
+        }
+
+        function persistCart() {
+            try {
+                localStorage.setItem('elnokhba_pharmacy_cart', JSON.stringify(cart));
+            } catch (e) {}
+        }
+
+        function syncBrandingUI() {
+            document.title = `${storeConfig.nameAr} | ${storeConfig.nameEn}`;
+            document.getElementById('ui-pharmacy-ar').textContent = storeConfig.nameAr;
+            document.getElementById('ui-pharmacy-en').textContent = storeConfig.nameEn;
+            document.getElementById('footer-name-ar').textContent = storeConfig.nameAr;
+            document.getElementById('footer-name-en').textContent = storeConfig.nameEn;
+            document.getElementById('footer-copy-name').textContent = storeConfig.nameAr;
+            document.getElementById('footer-whatsapp-num').textContent = `+${storeConfig.whatsapp}`;
+            document.getElementById('top-free-shipping-badge').textContent = 
+                `توصيل مجاني للطلبات فوق ${Number(storeConfig.freeDeliveryThreshold).toLocaleString('ar-EG')} ج.م`;
+        }
+
+        // ==========================================
+        // 4. رسم عبوات منتجات فاخرة (Vector Packaging Art)
+        // ==========================================
+        function buildProductPackagingSVG(product) {
+            const c = product.accent || "#043927";
+            const brandShort = (product.brand || "PHARMA").substring(0, 14);
+            
+            switch (product.packType) {
+                case "pump":
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <rect x="52" y="14" width="16" height="8" rx="2" fill="#043927"/>
+                            <path d="M56 14 L74 14 L74 18 L56 18 Z" fill="#D4AF37"/>
+                            <rect x="55" y="22" width="10" height="10" fill="#E5E7EB"/>
+                            <rect x="36" y="32" width="48" height="74" rx="10" fill="#FFFFFF" stroke="${c}" stroke-width="2.5"/>
+                            <rect x="37" y="46" width="46" height="32" fill="${c}" fill-opacity="0.12"/>
+                            <rect x="37" y="46" width="46" height="6" fill="${c}"/>
+                            <text x="60" y="65" text-anchor="middle" font-size="8" font-weight="800" fill="#043927" font-family="sans-serif">${brandShort}</text>
+                            <rect x="46" y="86" width="28" height="4" rx="2" fill="#D4AF37"/>
+                        </svg>`;
+                case "tube":
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <path d="M36 22 L84 22 L78 88 L42 88 Z" fill="#FFFFFF" stroke="${c}" stroke-width="2.5"/>
+                            <rect x="36" y="22" width="48" height="8" fill="${c}"/>
+                            <rect x="45" y="44" width="30" height="22" rx="3" fill="${c}" fill-opacity="0.14"/>
+                            <text x="60" y="58" text-anchor="middle" font-size="7.5" font-weight="800" fill="#043927" font-family="sans-serif">${brandShort}</text>
+                            <rect x="48" y="88" width="24" height="16" rx="3" fill="#043927"/>
+                            <line x1="48" y1="93" x2="72" y2="93" stroke="#D4AF37" stroke-width="1.5"/>
+                        </svg>`;
+                case "device":
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <rect x="28" y="24" width="64" height="74" rx="14" fill="#FFFFFF" stroke="#043927" stroke-width="2.5"/>
+                            <rect x="38" y="34" width="44" height="30" rx="6" fill="#043927"/>
+                            <text x="60" y="53" text-anchor="middle" font-size="12" font-weight="800" fill="#D4AF37" font-family="monospace">120/80</text>
+                            <circle cx="60" cy="80" r="9" fill="${c}" fill-opacity="0.15" stroke="${c}" stroke-width="2"/>
+                            <circle cx="60" cy="80" r="4" fill="#D4AF37"/>
+                        </svg>`;
+                case "jar":
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <rect x="34" y="32" width="52" height="12" rx="4" fill="#043927"/>
+                            <rect x="30" y="44" width="60" height="54" rx="12" fill="#FFFFFF" stroke="${c}" stroke-width="2.5"/>
+                            <rect x="31" y="58" width="58" height="24" fill="${c}" fill-opacity="0.12"/>
+                            <text x="60" y="73" text-anchor="middle" font-size="8.5" font-weight="800" fill="#043927" font-family="sans-serif">${brandShort}</text>
+                        </svg>`;
+                case "box":
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <rect x="22" y="34" width="76" height="54" rx="8" fill="#FFFFFF" stroke="${c}" stroke-width="2.5"/>
+                            <path d="M22 48 L98 48 L98 58 L22 58 Z" fill="${c}"/>
+                            <circle cx="84" cy="72" r="8" fill="#D4AF37" fill-opacity="0.25" stroke="#D4AF37" stroke-width="1.5"/>
+                            <text x="52" y="74" text-anchor="middle" font-size="8.5" font-weight="800" fill="#043927" font-family="sans-serif">${brandShort}</text>
+                        </svg>`;
+                default:
+                    return `
+                        <svg viewBox="0 0 120 120" class="w-24 h-24 sm:w-28 sm:h-28 drop-shadow-sm">
+                            <rect x="46" y="18" width="28" height="14" rx="3" fill="#043927"/>
+                            <rect x="36" y="32" width="48" height="72" rx="12" fill="#FFFFFF" stroke="${c}" stroke-width="2.5"/>
+                            <rect x="37" y="50" width="46" height="30" fill="${c}" fill-opacity="0.12"/>
+                            <text x="60" y="68" text-anchor="middle" font-size="8" font-weight="800" fill="#043927" font-family="sans-serif">${brandShort}</text>
+                            <line x1="48" y1="88" x2="72" y2="88" stroke="#D4AF37" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>`;
+            }
+        }
+
+        // ==========================================
+        // 5. التصنيفات والبحث وعرض المنتجات
+        // ==========================================
+        function getCategoryIconSVG(catId, active) {
+            const color = active ? "#D4AF37" : "#043927";
+            switch (catId) {
+                case "العناية بالبشرة":
+                    return `<svg class="w-4 h-4" fill="none" stroke="${color}" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3l1.9 5.8L20 11l-6.1 2.2L12 19l-1.9-5.8L4 11l6.1-2.2L12 3z"/></svg>`;
+                case "العناية بالشعر":
+                    return `<svg class="w-4 h-4" fill="none" stroke="${color}" stroke-width="2" viewBox="0 0 24 24"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>`;
+                case "أدوية وعلاجات":
+                    return `<svg class="w-4 h-4" fill="none" stroke="${color}" stroke-width="2" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></svg>`;
+                case "فيتامينات ومكملات":
+                    return `<svg class="w-4 h-4" fill="none" stroke="${color}" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M
